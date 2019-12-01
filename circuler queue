@@ -1,0 +1,96 @@
+#include<stdio.h>
+#define capacity 5
+int cqueue[capacity],front=-1,rear=-1,ele;
+void insert(int ele)
+{
+    if(front==rear+1 || rear==capacity-1 && front==0)
+        printf("Queue is full.\n");
+    else if(front==-1 && rear==-1)
+    {
+        front=rear=0;
+        cqueue[rear]=ele;
+        printf("%d has been inserted.\n",ele);
+    }
+    else if (rear==capacity-1)
+    {
+        rear=0;
+        cqueue[rear]=ele;
+        printf("%d has been inserted.\n",ele);
+    }
+    else
+    {
+        rear++;
+        cqueue[rear]=ele;
+        printf("%d has been inserted.\n",ele);
+    }
+}
+void deletion()
+{
+    if(front==-1 && rear==-1)
+        printf("More Deletion is not possible.\n");
+    else if(front==capacity-1)
+    {
+        ele=cqueue[front];
+        printf("%d has been deleted.\n",ele);
+        front=0;
+    }
+    else if(front==rear)
+    {
+        ele=cqueue[front];
+        printf("%d has been deleted.\n",ele);
+        front=rear=-1;
+    }
+    else
+    {
+        int ele=cqueue[front];
+        printf("%d has been has been deleted.\n",ele);
+        front++;
+    }
+}
+void traverse()
+{
+    if(front==-1 && rear==-1)
+         printf("Queue is empty.\n") ;
+     else if (front!=0 && rear<front)
+    {
+        for(int i=front; i<capacity; i++)
+            printf("%d\n",cqueue[i]);
+        for(int i=0; i<=rear; i++)
+            printf("%d\n",cqueue[i]);
+    }
+    else
+    {
+        for( int i=front; i<=rear; i++)
+            printf("%d\n",cqueue[i]);
+    }
+
+}
+int main()
+{
+    int ch,n;
+    printf("Enter choice : \n1.Insert\n2.Delete\n3.Traverse\n4.Exit\n");
+    while(1)
+    {
+        scanf("%d",&ch);
+        switch(ch)
+        {
+        case 1:
+            printf("Enter element : ");
+            scanf("%d",&n);
+            insert(n);
+            break;
+        case 2:
+            deletion();
+            break;
+        case 3:
+            traverse();
+            break;
+        case 4:
+            exit(0);
+        default :
+            printf("Wrong Number.\n");
+        }
+    }
+
+}
+
