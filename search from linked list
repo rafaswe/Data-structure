@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<stdlib.h>
+void appened(char ch);
+void search(char ch);
+void display();
+struct node
+{
+    char data;
+    struct node* link;
+};
+struct node* root=NULL;
+int main()
+{
+    char ch,s;
+    printf("Enter your data : \n");
+    for(int i=0; i<6; i++)
+    {
+        scanf("%c",&ch);
+        appened(ch);
+        getchar();
+    }
+    display();
+    printf("\n\nEnter your choice : ");
+    scanf("%c",&s);
+    search(s);
+
+}
+void appened(char ch)
+{
+    struct node* temp;
+    temp=(struct node*)malloc(sizeof(struct node));
+    temp->data=ch;
+    temp->link=NULL;
+    if(root==NULL)
+        root=temp;
+    else
+    {
+        struct node*p;
+        p=root;
+        while(p->link!=NULL)
+        {
+            p=p->link;
+        }
+        p->link=temp;
+    }
+}
+void search(char ch)
+{
+    struct node* temp;
+    temp=root;
+    while(temp!=NULL)
+    {
+        if(temp->data==ch)
+        {
+            printf("Character has been found.\n");
+            exit(0);
+        }
+        temp=temp->link;
+    }
+    printf("The character is not in the list.\n");
+}
+void display()
+{
+    struct node* temp;
+    temp=root;
+    if(temp==NULL)
+        printf("There is no data on that list.\n");
+    else
+    {
+        printf("\nDATA OF THAT LIST : \n");
+        while (temp!=NULL)
+        {
+            printf("%c->",temp->data);
+            temp=temp->link;
+        }
+    }
+}
