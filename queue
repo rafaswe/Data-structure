@@ -1,0 +1,64 @@
+#include<stdio.h>
+#define CAPACITY 5
+int front=0,rear=0,queue[CAPACITY];
+void insert()
+{
+    if (rear==CAPACITY)
+        printf("Queue is fULL\n");
+    else
+    {
+        int ele;
+        scanf("%d",&ele);
+        queue[rear]=ele;
+        rear++;
+    }
+}
+void deletion()
+{
+    if(front==rear)
+        printf("queue is empty.\n");
+    else
+    {
+        printf("deleted element = %d\n",queue[front]);
+        for(int i=0;i<rear;i++)
+            queue[i]=queue[i+1];
+        rear--;
+        printf("for checking whether deletion is fulfill or not,, you can try traverse function.\n");
+    }
+}
+
+void traverse()
+{
+    if(front==rear)
+        printf("Queue is empty\n");
+    else
+    {
+        printf("queue elements are = \n");
+        for(int i=0;i<rear;i++)
+            printf("%d\n",queue[i]);
+    }
+}
+int main()
+{
+    int ch;
+    printf("1.insert.\n2.delete.\n3.display\n4.stop\n");
+   while(1)
+   {
+    printf("Enter your choice :");
+    scanf("%d",&ch);
+    switch(ch)
+    {
+        case 1: insert();
+                 break;
+        case 2: deletion();
+                break;
+        case 3: traverse();
+                break;
+        case 4:
+            exit(0);
+        default:
+            printf("Wrong Number\n");
+    }
+
+   }
+}
