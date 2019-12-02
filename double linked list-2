@@ -1,0 +1,180 @@
+#include<stdio.h>
+#include<stdlib.h>
+void creation(int n);
+void display();
+struct node
+{
+    int data;
+    struct node *prenode;
+    struct node *nextnode;
+}*head,*last;
+int main()
+{
+    int ch,n;
+    printf("1.Creation.\n2.Display.\n3.ADD at first.\n4.ADD at Last.\n5.Add at midd.\n6.exit.\n");
+    while(1)
+    {
+        printf("\nEnter your choice = ");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+        case 1:
+            printf("how many Number you wanna add ? ");
+            scanf("%d",&n);
+            creation(n);
+            break;
+
+        case 2 :
+            printf("Data of that list :\n");
+            display();
+            break;
+        case 3:
+            printf("Enter data = ");
+            scanf("%d",&n);
+            addAtfirst(n);
+            break;
+        case 4:
+            printf("Enter data = ");
+            scanf("%d",&n);
+            lastadd(n);
+            break;
+        case 5:
+            middadd();
+            break;
+        case 6:
+            exit(0);
+        default:
+            printf("You enterd wrong number.\n");
+        }
+    }
+}
+void creation(int n)
+{
+    struct node *temp;
+    int d;
+    printf("Enter data : ");
+
+    if(n>=1)
+    {
+        head=(struct node *)malloc(sizeof(struct node));
+        scanf("%d",&d);
+        head->data=d;
+        head->prenode=NULL;
+        head->nextnode=NULL;
+        last=head;
+        for(int i=2; i<=n; i++)
+        {
+            struct node *p;
+            scanf("%d",&d);
+            p=(struct node *)malloc(sizeof(struct node));
+            p->data=d;
+            p->prenode=last;
+            p->nextnode=NULL;
+            last->nextnode=p;
+            last=p;
+
+
+        }
+        printf("\nDONE.!!!!!!!!!!!\n");
+    }
+    else
+        printf("Error\n");
+
+}
+void display()
+{
+    struct node *temp=head;
+    if(temp==NULL)
+        printf("there is no data");
+    else
+    {
+        while(temp!=NULL)
+        {
+            printf("%d->",temp->data);
+            temp=temp->nextnode;
+
+        }
+    }
+}
+void addAtfirst(int n)
+{
+    struct node *temp;
+    if(head==NULL)
+        printf("there is no data.\n");
+    else
+    {
+        temp=(struct node *)malloc(sizeof( struct node));
+        temp->data=n;
+        temp->prenode=NULL;
+        temp->nextnode=head;
+        head->prenode=temp;
+        head=temp;
+        printf("DONE.!!!!!!!!!!!!\n");
+    }
+
+}
+void lastadd(int n)
+{
+    if(head==NULL)
+        printf("Empty.\n");
+    else
+    {
+        struct node *temp=(struct node *)malloc(sizeof( struct node));
+        temp->data=n;
+        temp->nextnode=NULL;
+        temp->prenode=last;
+        last->nextnode=temp;
+        last=temp;
+        printf("DONE.!!!!!!!!!!!!\n");
+    }
+}
+int len()
+{
+    struct node *temp=head;
+    int c=0;
+          if(temp==NULL)
+              c=0;
+    else
+    {
+        while(temp->nextnode!=NULL)
+            {
+               c++;
+               temp=temp->nextnode;
+            }
+    }
+    return c;
+}
+void middadd()
+{
+    struct node *temp=head;
+    int n;
+    if(temp==NULL)
+        printf("Add at middle is not possible.\n");
+    else
+    {
+        int loc,i=1;
+        struct node *p=(struct node *)malloc(sizeof(struct node));
+        printf("Enter location.\n");
+        scanf("%d",&loc);
+        int l=len();
+        if(loc>l)
+            printf("\nAdd is not possible.\n");
+        else
+            {
+                printf("Enter Data = ");
+                scanf("%d",&n);
+                p->data=n;
+                p->prenode=NULL;
+                p->nextnode=NULL;
+                while(i<loc-1)
+                {
+                    temp=temp->nextnode;
+                    i++;
+                }
+                p->nextnode=temp->nextnode;
+                temp->nextnode=p;
+                p->prenode=temp;
+                printf("\nDONE!!!!!!!\n");
+            }
+    }
+}
