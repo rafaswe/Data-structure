@@ -1,0 +1,23 @@
+#include<stdio.h>
+int main()
+{
+    int a[100],key,n,c=0;
+    printf("How many elements you want ? ");
+    scanf("%d",&n);
+    printf("\nEnter the elements :\n");
+    for(int i=0;i<n;i++)
+        scanf("%d",&a[i]);
+    printf("\nEnter the number that you wanna search : ");
+    scanf("%d",&key);
+    for(int i=0;i<n;i++)
+    {
+        if(a[i]==key)
+        {
+            printf("\nThe value has been founded at %d position.\n",i+1);
+            c++;
+            break;
+        }
+    }
+    if(c==0)
+        printf("\nValue is not here.\n");
+}
