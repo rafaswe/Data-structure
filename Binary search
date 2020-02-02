@@ -1,0 +1,29 @@
+#include<stdio.h>
+int main()
+{
+    int f=0,last,n,a[100],ele,c=0;
+    printf("How many elements you want ? : ");
+    scanf("%d",&ele);
+    last=ele-1;
+    printf("Enter data :\n");
+    for (int i=0; i<ele; i++)
+        scanf("%d",&a[i]);
+    printf("Enter expected value : ");
+    scanf("%d",&n);
+    while(f<=last)
+    {
+        int mid=(f+last)/2;
+        if(a[mid]==n)
+        {
+            printf("\nThe value is founded at %d th position\n",mid+1);
+            c++;
+            break;
+        }
+        if(a[mid]>n)
+            last=mid-1;
+        if(a[mid]<n)
+            f=mid+1;
+    }
+    if(c==0)
+        printf("\nThe value you have inserted ,is not in the array.\n");
+}
