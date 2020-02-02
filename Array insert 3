@@ -1,0 +1,27 @@
+#include<stdio.h>
+int main()
+{
+    int a[100],n,e,i,j,el,pos,v;
+    printf("How many elements are in that array? \n");
+    scanf("%d",&el);
+    e=el;
+    printf("\nEnter elements of a array : \n");
+    for(i=0; i<e; i++)
+        scanf("%d",&a[i]);
+    printf("\nHow many value you wanna insert ? = ");
+    scanf("%d",&n);
+    for(i=1; i<=n; i++,pos++)
+    {
+        printf("\nFrom which position ? = ");
+        scanf("%d",&pos);
+        printf("\nInsert new values - \n");
+        scanf("%d",&v);
+        for(j=e-1; j>=pos-1;e++, j--)
+            a[i+1]=a[i];
+        a[pos-1]=v;
+    }
+    printf("\nNew array will be - \n");
+    for(i=0; i<=el+n-1; i++)
+        printf("%d\n",a[i]);
+
+}
